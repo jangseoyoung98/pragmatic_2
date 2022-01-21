@@ -7,6 +7,16 @@
              <span>nav1</span>
              <span>nav2</span>
              <span>nav3</span>
-             <span>nav4</span>
+             {% if not user.is_authenticated %}
+<!--             유저가 로그인 되어 있지 않을 경우-->
+             <a href="{% url 'accountApp:login' %}?next={{ request.path }}">
+             <span>login</span>
+             </a>
+             {% else %}
+<!--             로그인 되어 있을 경우-->
+             <a href="{% url 'accountApp:logout' %}?next={{ request.path }}">
+                 <span>logout</span>
+             </a>
+             {%endif %}
          </div>
     </div>
