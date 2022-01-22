@@ -40,11 +40,13 @@ class AccountDetailView(DetailView):
 
 class AccountUpdateView(UpdateView):
     model = User
+    context_object_name = 'target_user'
     form_class = AccountUpdateForm # Form을 바꿔줌
     success_url = reverse_lazy('accountApp:hello_world')
     template_name = 'accountApp/update.html'
 
 class AccountDeleteView(DeleteView):
     model = User
+    context_object_name = 'target_user'
     success_url = reverse_lazy('accountApp:login')
     template_name = 'accountApp/delete.html'
