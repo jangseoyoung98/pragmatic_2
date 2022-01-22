@@ -6,7 +6,7 @@ from django.urls import reverse, reverse_lazy
 
 # Create your views here.
 from accountApp.models import HelloWorld
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 from accountApp.forms import AccountUpdateForm
 
@@ -14,7 +14,6 @@ from accountApp.forms import AccountUpdateForm
 def hello_world(request):
 
     if request.method == "POST":
-
         temp = request.POST.get('hello_world_input')
 
         new_hello_world = HelloWorld()
@@ -45,3 +44,7 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('accountApp:hello_world')
     template_name = 'accountApp/update.html'
 
+class AccountDeleteView(DeleteView):
+    model = User
+    success_url = reverse_lazy('accountApp:login')
+    template_name = 'accountApp/delete.html'
